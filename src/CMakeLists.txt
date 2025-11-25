@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.1)
+cmake_minimum_required(VERSION 3.5)
 
 project(SCodes LANGUAGES CXX)
 option(SCODES_DEBUG OFF)
@@ -51,13 +51,9 @@ target_include_directories(${PROJECT_NAME} PUBLIC ${CMAKE_CURRENT_SOURCE_DIR})
 target_include_directories(${PROJECT_NAME} PRIVATE  "${CMAKE_CURRENT_SOURCE_DIR}/private")
 
 if (ANDROID)
-
     if(QT_VERSION_MAJOR EQUAL 5)
         find_package(Qt${QT_VERSION_MAJOR} COMPONENTS AndroidExtras REQUIRED)
         target_link_libraries(${PROJECT_NAME} PUBLIC Qt${QT_VERSION_MAJOR}::AndroidExtras)
-    else()
-        target_link_libraries(${PROJECT_NAME} PUBLIC Qt::CorePrivate)
     endif()
-
     target_link_libraries(${PROJECT_NAME} PUBLIC EGL GLESv2)
 endif()
